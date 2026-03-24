@@ -1,0 +1,55 @@
+Exception Handling in Java
+
+Exception handling is a mechanism to handle runtime errors gracefully, preventing program crashes. Java uses try-catch blocks and other keywords for this.
+
+Exception Hierarchy
+All exceptions in Java inherit from the Throwable class. The hierarchy is:
+- Throwable
+  - Exception (checked exceptions)
+    - IOException
+    - SQLException
+    - etc.
+  - RuntimeException (unchecked exceptions)
+    - NullPointerException
+    - ArrayIndexOutOfBoundsException
+    - etc.
+  - Error (unchecked, serious issues like OutOfMemoryError)
+
+Throwable is the root class with methods like getMessage(), printStackTrace().
+
+Types of Exceptions: Checked vs. Unchecked
+- Checked Exceptions: Checked at compile-time. Must be handled or declared. Examples: IOException, SQLException. They occur due to external factors (e.g., file not found).
+- Unchecked Exceptions: Not checked at compile-time. Include RuntimeException and Error. Examples: NullPointerException, ArithmeticException. They occur due to programming errors.
+
+try, catch, finally, throw, and throws
+- try: Block where code that might throw an exception is placed.
+- catch: Block that handles the exception. Can have multiple catch blocks for different exceptions.
+- finally: Block that executes always, regardless of exception (used for cleanup, e.g., closing resources).
+- throw: Keyword to explicitly throw an exception. Example: throw new ArithmeticException("Division by zero");
+- throws: Keyword in method signature to declare that the method might throw checked exceptions. Example: public void readFile() throws IOException
+
+Example:
+try {
+    int result = 10 / 0;
+} catch (ArithmeticException e) {
+    System.out.println("Error: " + e.getMessage());
+} finally {
+    System.out.println("Cleanup code");
+}
+
+Custom Exceptions
+You can create custom exceptions by extending Exception (for checked) or RuntimeException (for unchecked).
+
+Example:
+class InvalidAgeException extends Exception {
+    public InvalidAgeException(String message) {
+        super(message);
+    }
+}
+
+// Usage
+if (age < 0) {
+    throw new InvalidAgeException("Age cannot be negative");
+}
+
+Custom exceptions allow defining application-specific error conditions.

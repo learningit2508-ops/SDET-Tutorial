@@ -1,0 +1,55 @@
+String Class and String Methods in Java
+
+The String class in Java represents a sequence of characters. Strings are immutable, meaning once created, their value cannot be changed. This ensures thread safety and allows string pooling for memory efficiency.
+
+Key Features:
+- Strings are objects of the String class.
+- Created using literals: String s = "Hello"; or constructors: String s = new String("Hello");
+- Stored in the string pool for reuse.
+
+Common String Methods:
+- length(): Returns the number of characters. Example: "Hello".length() → 5
+- charAt(int index): Returns the character at the specified index. Example: "Hello".charAt(0) → 'H'
+- substring(int beginIndex): Returns a substring from beginIndex to end. Example: "Hello".substring(1) → "ello"
+- substring(int beginIndex, int endIndex): Returns substring from beginIndex to endIndex-1. Example: "Hello".substring(1, 4) → "ell"
+- indexOf(String str): Returns the index of the first occurrence of str. Example: "Hello".indexOf("l") → 2
+- lastIndexOf(String str): Returns the index of the last occurrence. Example: "Hello".lastIndexOf("l") → 3
+- toLowerCase(): Converts to lowercase. Example: "Hello".toLowerCase() → "hello"
+- toUpperCase(): Converts to uppercase. Example: "Hello".toUpperCase() → "HELLO"
+- trim(): Removes leading and trailing whitespace. Example: "  Hello  ".trim() → "Hello"
+- replace(char oldChar, char newChar): Replaces all occurrences. Example: "Hello".replace('l', 'x') → "Hexxo"
+- split(String regex): Splits the string into an array. Example: "a,b,c".split(",") → ["a", "b", "c"]
+- equals(Object obj): Compares content. Example: "Hello".equals("hello") → false
+- equalsIgnoreCase(String str): Case-insensitive comparison. Example: "Hello".equalsIgnoreCase("hello") → true
+- concat(String str): Concatenates strings. Example: "Hello".concat(" World") → "Hello World"
+- startsWith(String prefix): Checks if starts with prefix. Example: "Hello".startsWith("He") → true
+- endsWith(String suffix): Checks if ends with suffix. Example: "Hello".endsWith("lo") → true
+- contains(CharSequence s): Checks if contains the sequence. Example: "Hello".contains("ell") → true
+
+StringBuilder and StringBuffer in Java
+
+StringBuilder and StringBuffer are mutable classes for building and manipulating strings efficiently, unlike String which is immutable.
+
+StringBuilder:
+- Not thread-safe (faster for single-threaded applications).
+- Methods: append(), insert(), delete(), reverse(), etc.
+- Example:
+  StringBuilder sb = new StringBuilder("Hello");
+  sb.append(" World"); // "Hello World"
+  sb.insert(5, " Java"); // "Hello Java World"
+  sb.reverse(); // "dlroW avaJ olleH"
+
+StringBuffer:
+- Thread-safe (synchronized, suitable for multi-threaded environments).
+- Same methods as StringBuilder: append(), insert(), delete(), reverse(), etc.
+- Example:
+  StringBuffer sbf = new StringBuffer("Hello");
+  sbf.append(" World"); // "Hello World"
+  sbf.insert(5, " Java"); // "Hello Java World"
+  sbf.reverse(); // "dlroW avaJ olleH"
+
+Key Differences:
+- StringBuilder is faster but not thread-safe.
+- StringBuffer is slower due to synchronization but thread-safe.
+- Use StringBuilder for most cases; StringBuffer when thread safety is needed.
+- Both have capacity() and ensureCapacity() for performance.

@@ -1,0 +1,161 @@
+Class
+A class is a blueprint or template that defines the structure and behavior of objects.
+It encapsulates data (fields/variables) and methods (functions) that operate on that data.
+Classes are declared using the class keyword, followed by the class name (e.g., public class Car { ... }).
+They can include constructors, which are special methods to initialize objects.
+
+
+
+Object
+An object is an instance of a class—it's a concrete realization of the class blueprint.
+Objects are created using the new keyword (e.g., Car myCar = new Car();).
+Each object has its own state (values in fields) and can invoke methods defined in the class.
+Objects interact with each other to perform tasks, promoting modularity and reusability.
+
+Constructors
+Constructors are special methods used to initialize objects when they are created. They have the same name as the class and no return type.
+
+- Default Constructor: Automatically provided by Java if no constructor is defined. It initializes instance variables to their default values (e.g., 0 for int, null for objects). Example: Car() { } (implicit).
+
+- Parameterized Constructor: Takes parameters to initialize fields with specific values. Example: Car(String model, int year) { this.model = model; this.year = year; }.
+
+- Copy Constructor: A parameterized constructor that takes another object of the same class and copies its state. Not built-in in Java, but can be defined manually. Example: Car(Car other) { this.model = other.model; this.year = other.year; }.
+
+Example of Constructors in a Class:
+public class Car {
+    private String model;
+    private int year;
+
+    // Default Constructor
+    public Car() {
+        this.model = "Unknown";
+        this.year = 0;
+    }
+
+    // Parameterized Constructor
+    public Car(String model, int year) {
+        this.model = model;
+        this.year = year;
+    }
+
+    // Copy Constructor
+    public Car(Car other) {
+        this.model = other.model;
+        this.year = other.year;
+    }
+
+    // Getters
+    public String getModel() {
+        return model;
+    }
+
+    public int getYear() {
+        return year;
+    }
+
+    // Setters
+    public void setModel(String model) {
+        this.model = model;
+    }
+
+    public void setYear(int year) {
+        this.year = year;
+    }
+
+    // Method to display car details
+    public void display() {
+        System.out.println("Model: " + model + ", Year: " + year);
+    }
+}
+
+this and super Keywords
+In Java, 'this' and 'super' are special keywords used for referencing objects and classes.
+
+- this Keyword: Refers to the current instance of the class. It is used to:
+  - Access instance variables when they are shadowed by parameters (e.g., this.model = model;).
+  - Call other constructors in the same class (e.g., this();).
+  - Pass the current object as a parameter to another method.
+  - Return the current object from a method (for method chaining).
+
+- super Keyword: Refers to the immediate parent class (superclass). It is used to:
+  - Call the superclass constructor (e.g., super(model, year);).
+  - Access superclass methods or fields if overridden (e.g., super.display();).
+  - Ensure proper initialization in inheritance hierarchies.
+
+Example Usage:
+In the Car class, if we have a subclass like ElectricCar extending Car, we might use super in its constructor:
+public class ElectricCar extends Car {
+    int batteryCapacity;
+
+    public ElectricCar(String model, int year, int batteryCapacity) {
+        super(model, year);  // Calls Car's parameterized constructor
+        this.batteryCapacity = batteryCapacity;
+    }
+
+    @Override
+    public void display() {
+        super.display();  // Calls Car's display method
+        System.out.println("Battery Capacity: " + batteryCapacity);
+    }
+}
+
+Four Pillars of Object-Oriented Programming (OOP)
+Java supports four main principles of OOP: Encapsulation, Inheritance, Polymorphism, and Abstraction.
+
+1. Encapsulation
+   - Encapsulation is the bundling of data (fields) and methods that operate on that data into a single unit (class), while restricting access to some components.
+   - It hides the internal state of an object and requires all interaction to be performed through an object's methods.
+   - Achieved using access modifiers: private (accessible only within the class), public (accessible everywhere), protected (accessible within package and subclasses), default (package-private).
+   - Example: In the Car class, make fields private and provide public getters/setters to control access.
+
+2. Inheritance
+   - Inheritance allows a class (subclass/child) to inherit properties and behaviors from another class (superclass/parent).
+   - Promotes code reusability and establishes a relationship between classes.
+   - In Java, use the 'extends' keyword for class inheritance. Multiple inheritance is not supported for classes but can be achieved via interfaces.
+   - Example: ElectricCar extends Car, inheriting model and year, and adding batteryCapacity.
+
+3. Polymorphism
+   - Polymorphism means "many forms" and allows objects to be treated as instances of their parent class, enabling dynamic method resolution.
+   - Types:
+     - Compile-time (Static): Method overloading – same method name with different parameters in the same class.
+     - Runtime (Dynamic): Method overriding – subclass provides a specific implementation of a method defined in the superclass.
+   - Example: In ElectricCar, override the display() method to include battery details.
+
+4. Abstraction
+   - Abstraction focuses on showing only essential features of an object while hiding unnecessary details.
+   - Achieved through abstract classes (cannot be instantiated, can have abstract methods) and interfaces (contracts for classes to implement).
+   - Helps in reducing complexity and increasing efficiency.
+   - Example: Create an abstract class Vehicle with an abstract method startEngine(), implemented differently in Car and ElectricCar.
+
+Method Overloading and Overriding
+These are key aspects of polymorphism in Java.
+
+- Method Overloading:
+  - Method overloading occurs when multiple methods in the same class have the same name but different parameter lists (different number, types, or order of parameters).
+  - It is a form of compile-time (static) polymorphism, resolved at compile time based on the method signature.
+  - The return type can be different, but parameters must differ.
+  - Example: In the Car class, you could have display_message(String brand, String color) and display_message(String brand) where the second uses a default color.
+
+- Method Overriding:
+  - Method overriding happens when a subclass provides a specific implementation for a method that is already defined in its superclass (or interface).
+  - It is a form of runtime (dynamic) polymorphism, resolved at runtime based on the object type.
+  - Rules: The method must have the same name, same parameters, and same or covariant return type. The access modifier can be the same or more accessible (e.g., protected to public).
+  - Use @Override annotation to indicate overriding.
+  - Example: In the Car class extending Vehicle, the start_engine() method overrides the abstract method from Vehicle, providing a specific implementation for starting a car's engine.
+
+Access Modifiers in Java
+Access modifiers control the visibility and accessibility of classes, methods, fields, and constructors. They are essential for encapsulation and data hiding.
+
+- private: The most restrictive modifier. Accessible only within the same class. Cannot be accessed from outside the class, including subclasses or other classes in the same package.
+  - Example: In the Car class, fields like `private String model;` can only be accessed within Car methods, not from ElectricCar or other classes.
+
+- default (no modifier): Also known as package-private. Accessible within the same package (classes in the same directory/folder). Not accessible from classes in different packages.
+  - Example: If a method in Car has no modifier, it can be called by other classes in the `coretopics` package but not from outside.
+
+- protected: Accessible within the same package and by subclasses (even if in different packages). Useful for inheritance.
+  - Example: A `protected` method in Car can be accessed by ElectricCar (a subclass) and other classes in the same package.
+
+- public: The least restrictive modifier. Accessible from anywhere in the application, including different packages and external libraries.
+  - Example: Public methods like `getModel()` in Car can be called from any class.
+
+Modifiers can be applied to classes, interfaces, fields, methods, and constructors. Choosing the right modifier helps in designing secure and maintainable code.

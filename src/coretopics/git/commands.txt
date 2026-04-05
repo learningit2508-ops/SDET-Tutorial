@@ -1,0 +1,59 @@
+# GIT
+
+1. Start new work
+git checkout develop
+git pull origin develop
+git checkout -b feature/TICKET-123-add-login
+
+# 2. Do your work, commit often
+git add .
+git commit -m "feat(auth): add login endpoint"
+
+# 3. Before raising PR, sync with latest develop
+git fetch origin
+git rebase origin/develop
+
+# 4. Push and open PR
+git push origin feature/TICKET-123-add-login
+# → Open PR on GitHub/GitLab targeting develop
+
+# 5. After PR is approved, squash & merge
+# → Done via UI (GitHub/GitLab merge button)
+
+# You're on feature branch, main has moved ahead
+git checkout feature/user-auth
+git fetch origin
+git rebase origin/main
+
+# If conflicts arise, fix them then:
+git add .
+git rebase --continue
+
+# To abort if things go wrong:
+git rebase --abort
+
+
+git rebase -i HEAD~3   # edit last 3 commits
+```
+This opens an editor where you can:
+```
+pick a1b2c3 Add user model
+squash d4e5f6 fix typo        ← combine into previous commit
+reword g7h8i9 add login api   ← rename this commit
+drop  j1k2l3 debug logs       ← delete this commit entirely
+
+
+
+git status                          # see what's changed
+git add .                           # stage all changes
+git commit -m "feat: add login api" # commit with message
+git push origin feature/my-feature  # push to remote
+git pull --rebase origin main        # pull latest with rebase
+
+
+git reset --soft HEAD~1   # undo last commit, keep changes staged
+git reset --mixed HEAD~1  # undo last commit, keep changes unstaged
+git reset --hard HEAD~1   # undo last commit, DISCARD changes ⚠️
+git revert <commit-hash>  # safely undo a pushed commit
+git stash                 # temporarily save uncommitted changes
+git stash pop             # bring back stashed changes

@@ -1,0 +1,28 @@
+List, Set, Map Interfaces
+ArrayList, LinkedList, HashSet, LinkedHashSet
+HashMap, LinkedHashMap, TreeMap
+Iterator and Stream API:
+
+List : An ordered collection that allows duplicate elements.
+It maintains the insertion order and provides positional access to elements.
+Common implementations include ArrayList and LinkedList.
+
+
+Set : A collection that does not allow duplicate elements.
+It does not maintain any order (HashSet) or maintains insertion order (LinkedHashSet).
+Common implementations include HashSet and LinkedHashSet.
+Allow single null element (HashSet) or no null elements (LinkedHashSet).
+
+LinkedHashSet
+LinkedHashSet extends HashSet and maintains a doubly-linked list through its elements. Its characteristics include:
+Ordering: It maintains the insertion order of elements. When you iterate through a LinkedHashSet, elements will be returned in the order in which they were inserted.
+Performance: Slightly slower than HashSet due to the additional costs of maintaining the linked list.
+Use-case: Useful when you need a collection that ensures no duplicates and also maintains the order of insertion.
+
+
+TreeSet
+TreeSet is an implementation of the Set interface that uses a TreeMap (Red-Black tree) internally. Its features include:
+Sorted Order: The elements in a TreeSet are sorted according to their natural ordering, or by a Comparator provided at set creation time.
+Performance: Provides log(n) time cost for basic operations like add, remove, and contains.
+No Null Elements: Cannot contain null elements as it would not be able to compare null with non-null elements.
+Use-case: Ideal for storing elements that need to be retrieved in a sorted order.
